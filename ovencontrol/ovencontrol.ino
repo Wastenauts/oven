@@ -9,10 +9,10 @@
 
 #define RELAY1 9
 #define RELAY2 10
-#define OFF 0
-#define ON 1
+#define OFF 1 //relays are passive conducting, only when a signal is applied do they turn off.
+#define ON 0
 
-float temp = 0;     
+float temp = 0;
 int setT = 0;  //to be set during use via user interface (i.e. potentiometer)
 
 void setup() {
@@ -26,8 +26,9 @@ void setup() {
 }
 
 void loop() {
-	setT = 60 + (255-60) * (float)analogRead(POT_PIN) / 1023;		//for control range from 60 to 255.
+ 	setT = 60 + (255-60) * (float)analogRead(POT_PIN) / 1023;		//for control range from 60 to 255.
 	temp = getTemp();
+  
 
   //switch on or off relay to control oven element
   if(temp > setT) {2']45]['/  digitalWrite(RELAY1, OFF);
