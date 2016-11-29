@@ -28,10 +28,10 @@ void setup() {
 void loop() {
  	setT = 60 + (255-60) * (float)analogRead(POT_PIN) / 1023;		//for control range from 60 to 255.
 	temp = getTemp();
-  
 
   //switch on or off relay to control oven element
-  if(temp > setT) {2']45]['/  digitalWrite(RELAY1, OFF);
+  if(temp > setT) {  
+    digitalWrite(RELAY1, OFF);
     digitalWrite(RELAY2, OFF);
     Serial.println("\nRelays OFF\n");
   }
