@@ -11,6 +11,9 @@
 #define RELAY2 10
 #define OFF 1 //relays are passive conducting, only when a signal is applied do they turn off.
 #define ON 0
+#define CLK 2 //serial clock for display
+#define SDA 3 //serial data for display
+#define SEN 4 //serial enable for display
 
 float temp = 0;
 int setT = 0;  //to be set during use via user interface (i.e. potentiometer)
@@ -19,10 +22,17 @@ void setup() {
   Serial.begin(9600);
   //Serial.println("Ready: ");
 
+  //Relay setup
   pinMode(RELAY1, OUTPUT);
   pinMode(RELAY2, OUTPUT);
   digitalWrite(RELAY1, OFF);
   digitalWrite(RELAY2, OFF);
+
+  //7-seg display setup
+  pinMode(CLK, OUTPUT);
+  pinMode(SDA, OUTPUT);
+  pinMode(SEN, OUTPUT);
+  digitalWrite(SEN, 1);
 }
 
 void loop() {
@@ -40,6 +50,9 @@ void loop() {
     digitalWrite(RELAY2, ON);
     Serial.println("\nRelays ON\n");
   }
+
+  //output serial
+  
 }
 
 float getTemp() {
